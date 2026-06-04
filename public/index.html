@@ -22,19 +22,14 @@
 			body {
 				height: 100%;
 				min-height: 100vh;
-				background: linear-gradient(
-					135deg,
-					#1a1a2e 0%,
-					#16213e 50%,
-					#0f3460 100%
-				);
+				background: #10172f;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
 				font-family: 'Segoe UI', Arial, sans-serif;
 				color: #fff;
-				padding: 20px;
+				padding: 0;
 			}
 
 			h1 {
@@ -52,65 +47,20 @@
 				text-align: center;
 			}
 
-			.app-card {
-				width: min(100%, 500px);
-				background: rgba(14, 20, 45, 0.82);
-				border: 1px solid rgba(255, 255, 255, 0.16);
-				border-radius: 38px;
-				box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
-				padding: 26px;
-				display: flex;
-				flex-direction: column;
-				gap: 24px;
-				position: relative;
-				overflow: hidden;
-				backdrop-filter: blur(16px);
-			}
-
-			.app-card::before {
-				content: '';
-				position: absolute;
-				inset: 0;
-				pointer-events: none;
-				background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 45%);
-			}
-
-			.app-card-header {
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				gap: 16px;
-				position: relative;
-				z-index: 1;
-			}
-
-			.app-chip {
-				padding: 8px 14px;
-				border-radius: 999px;
-				background: rgba(255, 255, 255, 0.08);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				color: #dfeaff;
-				font-size: 0.72rem;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				white-space: nowrap;
-			}
-
 			.main-card {
-				background: rgba(255, 255, 255, 0.06);
-				border: 1px solid rgba(255, 255, 255, 0.12);
-				border-radius: 28px;
-				padding: 40px 50px;
+				background: rgba(17, 24, 50, 0.98);
+				border: none;
+				border-radius: 0;
+				padding: 28px 22px;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				gap: 30px;
-				backdrop-filter: blur(10px);
-				box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-				max-width: 420px;
+				gap: 26px;
+				min-height: 100vh;
 				width: 100%;
+				max-width: none;
+				box-shadow: none;
 			}
-
 			/* ── Thermometer ── */
 			.thermo-wrap {
 				display: flex;
@@ -457,16 +407,6 @@
 					justify-content: flex-start;
 				}
 
-				.app-card-header {
-					flex-direction: column;
-					align-items: flex-start;
-				}
-
-				.app-chip {
-					width: 100%;
-					text-align: center;
-				}
-
 				.main-card {
 					padding: 22px 18px;
 					gap: 20px;
@@ -493,98 +433,90 @@
 		</style>
 	</head>
 	<body>
-		<div class="app-card">
-			<header class="app-card-header">
-				<div>
-					<h1>📻 Insulsómetro</h1>
-					<p class="subtitle">
-						¿Qué tan insulso es el comunicador de hoy? ¡Vota!
-					</p>
-				</div>
-				<div class="app-chip">Componente</div>
-			</header>
-
-			<div class="main-card">
-			<!-- Thermometer + score -->
-			<div
-				style="
-					display: flex;
-					align-items: center;
-					gap: 30px;
-					width: 100%;
-					justify-content: center;
-				"
-			>
-				<!-- Thermometer -->
-				<div class="thermo-wrap">
-					<div class="thermo-labels" id="tickLabels"></div>
-					<div class="thermometer" id="thermometer">
-						<div class="tube-bg">
-							<div class="mercury" id="mercury"></div>
+		<div class="main-card">
+			<h1>📻 Insulsómetro</h1>
+			<p class="subtitle">
+				¿Qué tan insulso es el comunicador de hoy? ¡Vota!
+			</p>
+				<!-- Thermometer + score -->
+				<div
+					style="
+						display: flex;
+						align-items: center;
+						gap: 30px;
+						width: 100%;
+						justify-content: center;
+					"
+				>
+					<!-- Thermometer -->
+					<div class="thermo-wrap">
+						<div class="thermo-labels" id="tickLabels"></div>
+						<div class="thermometer" id="thermometer">
+							<div class="tube-bg">
+								<div class="mercury" id="mercury"></div>
+							</div>
+							<div class="ticks" id="ticksContainer"></div>
+							<div class="bulb" id="bulb"></div>
+							<div class="drag-zone" id="dragZone"></div>
 						</div>
-						<div class="ticks" id="ticksContainer"></div>
-						<div class="bulb" id="bulb"></div>
-						<div class="drag-zone" id="dragZone"></div>
+					</div>
+
+					<!-- Score display -->
+					<div class="score-display">
+						<div class="score-number" id="scoreNumber">5.0</div>
+						<div class="score-label">/ 10</div>
 					</div>
 				</div>
 
-				<!-- Score display -->
-				<div class="score-display">
-					<div class="score-number" id="scoreNumber">5.0</div>
-					<div class="score-label">/ 10</div>
+				<!-- Slider + number input -->
+				<div class="input-row">
+					<input
+						type="range"
+						id="slider"
+						min="1"
+						max="10"
+						step="0.1"
+						value="5"
+					/>
+					<input
+						type="number"
+						id="numInput"
+						min="1"
+						max="10"
+						step="0.1"
+						value="5"
+					/>
 				</div>
-			</div>
 
-			<!-- Slider + number input -->
-			<div class="input-row">
-				<input
-					type="range"
-					id="slider"
-					min="1"
-					max="10"
-					step="0.1"
-					value="5"
-				/>
-				<input
-					type="number"
-					id="numInput"
-					min="1"
-					max="10"
-					step="0.1"
-					value="5"
-				/>
-			</div>
+				<!-- Submit -->
+				<button class="btn-submit" id="btnSubmit">
+					📨 Registrar mi voto
+				</button>
 
-			<!-- Submit -->
-			<button class="btn-submit" id="btnSubmit">
-				📨 Registrar mi voto
-			</button>
-
-			<!-- Results -->
-			<div class="results" id="results">
-				<h3>📊 Resultados</h3>
-				<div class="stats-row" id="statsRow">
-					<div class="stat-box">
-						<div class="val" id="statAvg">—</div>
-						<div class="lbl">Promedio</div>
+				<!-- Results -->
+				<div class="results" id="results">
+					<h3>📊 Resultados</h3>
+					<div class="stats-row" id="statsRow">
+						<div class="stat-box">
+							<div class="val" id="statAvg">—</div>
+							<div class="lbl">Promedio</div>
+						</div>
+						<div class="stat-box">
+							<div class="val" id="statVotes">0</div>
+							<div class="lbl">Votos</div>
+						</div>
+						<div class="stat-box">
+							<div class="val" id="statMax">—</div>
+							<div class="lbl">Máximo</div>
+						</div>
 					</div>
-					<div class="stat-box">
-						<div class="val" id="statVotes">0</div>
-						<div class="lbl">Votos</div>
-					</div>
-					<div class="stat-box">
-						<div class="val" id="statMax">—</div>
-						<div class="lbl">Máximo</div>
-					</div>
-				</div>
-				<div class="vote-list" id="voteList">
-					<div class="empty-msg">
-						Aún no hay votos. ¡Sé el primero!
+					<div class="vote-list" id="voteList">
+						<div class="empty-msg">
+							Aún no hay votos. ¡Sé el primero!
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
 		<div class="toast" id="toast"></div>
 
 		<script>
