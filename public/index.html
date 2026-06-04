@@ -48,8 +48,52 @@
 			.subtitle {
 				font-size: 0.95rem;
 				color: #aac;
-				margin-bottom: 40px;
+				margin-bottom: 12px;
 				text-align: center;
+			}
+
+			.app-card {
+				width: min(100%, 500px);
+				background: rgba(14, 20, 45, 0.82);
+				border: 1px solid rgba(255, 255, 255, 0.16);
+				border-radius: 38px;
+				box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+				padding: 26px;
+				display: flex;
+				flex-direction: column;
+				gap: 24px;
+				position: relative;
+				overflow: hidden;
+				backdrop-filter: blur(16px);
+			}
+
+			.app-card::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+				background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 45%);
+			}
+
+			.app-card-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: 16px;
+				position: relative;
+				z-index: 1;
+			}
+
+			.app-chip {
+				padding: 8px 14px;
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				color: #dfeaff;
+				font-size: 0.72rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				white-space: nowrap;
 			}
 
 			.main-card {
@@ -413,6 +457,16 @@
 					justify-content: flex-start;
 				}
 
+				.app-card-header {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+
+				.app-chip {
+					width: 100%;
+					text-align: center;
+				}
+
 				.main-card {
 					padding: 22px 18px;
 					gap: 20px;
@@ -439,12 +493,18 @@
 		</style>
 	</head>
 	<body>
-		<h1>📻 Insulsómetro</h1>
-		<p class="subtitle">
-			¿Qué tan insulso es el comunicador de hoy? ¡Vota!
-		</p>
+		<div class="app-card">
+			<header class="app-card-header">
+				<div>
+					<h1>📻 Insulsómetro</h1>
+					<p class="subtitle">
+						¿Qué tan insulso es el comunicador de hoy? ¡Vota!
+					</p>
+				</div>
+				<div class="app-chip">Componente</div>
+			</header>
 
-		<div class="main-card">
+			<div class="main-card">
 			<!-- Thermometer + score -->
 			<div
 				style="
@@ -524,12 +584,12 @@
 				</div>
 			</div>
 		</div>
-
+		</div>
 		<div class="toast" id="toast"></div>
 
 		<script>
-const tubeBg = document.querySelector('.tube-bg');
-				let TUBE_H = tubeBg ? tubeBg.clientHeight : 300;
+			const tubeBg = document.querySelector('.tube-bg');
+			let TUBE_H = tubeBg ? tubeBg.clientHeight : 300;
 
 			const slider = document.getElementById('slider');
 			const numInput = document.getElementById('numInput');
