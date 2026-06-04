@@ -183,14 +183,6 @@
       letter-spacing: 1px;
     }
 
-    .verdict {
-      font-size: 1.1rem;
-      font-weight: 600;
-      min-height: 1.5em;
-      transition: all 0.3s;
-      text-shadow: 0 0 12px currentColor;
-    }
-
     /* ── Input row ── */
     .input-row {
       display: flex;
@@ -370,6 +362,65 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+      }
+
+      .main-card {
+        padding: 28px 22px;
+      }
+
+      .thermo-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .thermo-labels {
+        height: 240px;
+        padding-bottom: 34px;
+      }
+
+      .thermometer {
+        width: 44px;
+        height: 280px;
+      }
+
+      .tube-bg,
+      .ticks,
+      .drag-zone {
+        width: 20px;
+        height: 248px;
+      }
+
+      .bulb {
+        width: 42px;
+        height: 42px;
+      }
+
+      .score-number {
+        font-size: 3.4rem;
+      }
+
+      .input-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .input-row input[type=number] {
+        width: 100%;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .vote-list {
+        max-height: 160px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -395,13 +446,10 @@
       </div>
     </div>
 
-    <!-- Score + verdict -->
+    <!-- Score display -->
     <div class="score-display">
       <div class="score-number" id="scoreNumber">5.0</div>
       <div class="score-label">/ 10</div>
-      <div style="margin-top:14px;">
-        <div class="verdict" id="verdict"></div>
-      </div>
     </div>
   </div>
 
@@ -438,7 +486,6 @@
   const mercury  = document.getElementById('mercury');
   const bulb     = document.getElementById('bulb');
   const scoreNum = document.getElementById('scoreNumber');
-  const verdict  = document.getElementById('verdict');
   const dragZone = document.getElementById('dragZone');
   const btnSubmit= document.getElementById('btnSubmit');
   const voteList = document.getElementById('voteList');
@@ -446,15 +493,6 @@
   const statVotes= document.getElementById('statVotes');
   const statMax  = document.getElementById('statMax');
   const toast    = document.getElementById('toast');
-
-  const verdicts = [
-    { max: 2,   text: '😴 Durmiente total',    color: '#77aaff' },
-    { max: 3.5, text: '🥱 Bastante insulso',    color: '#99ccff' },
-    { max: 5,   text: '😐 Regular tirando a plano', color: '#ffdd55' },
-    { max: 6.5, text: '🙂 Tiene algo',          color: '#99ee77' },
-    { max: 8,   text: '😄 Entretenido',         color: '#55dd88' },
-    { max: 10,  text: '🔥 ¡Fuego en el aire!',  color: '#ff6644' },
-  ];
 
   let votes = [];
   let currentVal = 5.0;
@@ -506,10 +544,6 @@
     bulb.classList.toggle('hot', isHot);
 
     scoreNum.textContent = v.toFixed(1);
-
-    const vd = verdicts.find(x => v <= x.max) || verdicts[verdicts.length - 1];
-    verdict.textContent  = vd.text;
-    verdict.style.color  = vd.color;
 
     // color gradient on mercury
     const pct = (v - 1) / 9;
