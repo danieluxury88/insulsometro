@@ -438,85 +438,85 @@
 			<p class="subtitle">
 				¿Qué tan insulso es el comunicador de hoy? ¡Vota!
 			</p>
-				<!-- Thermometer + score -->
-				<div
-					style="
-						display: flex;
-						align-items: center;
-						gap: 30px;
-						width: 100%;
-						justify-content: center;
-					"
-				>
-					<!-- Thermometer -->
-					<div class="thermo-wrap">
-						<div class="thermo-labels" id="tickLabels"></div>
-						<div class="thermometer" id="thermometer">
-							<div class="tube-bg">
-								<div class="mercury" id="mercury"></div>
-							</div>
-							<div class="ticks" id="ticksContainer"></div>
-							<div class="bulb" id="bulb"></div>
-							<div class="drag-zone" id="dragZone"></div>
+			<!-- Thermometer + score -->
+			<div
+				style="
+					display: flex;
+					align-items: center;
+					gap: 30px;
+					width: 100%;
+					justify-content: center;
+				"
+			>
+				<!-- Thermometer -->
+				<div class="thermo-wrap">
+					<div class="thermo-labels" id="tickLabels"></div>
+					<div class="thermometer" id="thermometer">
+						<div class="tube-bg">
+							<div class="mercury" id="mercury"></div>
 						</div>
-					</div>
-
-					<!-- Score display -->
-					<div class="score-display">
-						<div class="score-number" id="scoreNumber">5.0</div>
-						<div class="score-label">/ 10</div>
+						<div class="ticks" id="ticksContainer"></div>
+						<div class="bulb" id="bulb"></div>
+						<div class="drag-zone" id="dragZone"></div>
 					</div>
 				</div>
 
-				<!-- Slider + number input -->
-				<div class="input-row">
-					<input
-						type="range"
-						id="slider"
-						min="1"
-						max="10"
-						step="0.1"
-						value="5"
-					/>
-					<input
-						type="number"
-						id="numInput"
-						min="1"
-						max="10"
-						step="0.1"
-						value="5"
-					/>
+				<!-- Score display -->
+				<div class="score-display">
+					<div class="score-number" id="scoreNumber">5.0</div>
+					<div class="score-label">/ 10</div>
 				</div>
+			</div>
 
-				<!-- Submit -->
-				<button class="btn-submit" id="btnSubmit">
-					📨 Registrar mi voto
-				</button>
+			<!-- Slider + number input -->
+			<div class="input-row">
+				<input
+					type="range"
+					id="slider"
+					min="1"
+					max="10"
+					step="0.1"
+					value="5"
+				/>
+				<input
+					type="number"
+					id="numInput"
+					min="1"
+					max="10"
+					step="0.1"
+					value="5"
+				/>
+			</div>
 
-				<!-- Results -->
-				<div class="results" id="results">
-					<h3>📊 Resultados</h3>
-					<div class="stats-row" id="statsRow">
-						<div class="stat-box">
-							<div class="val" id="statAvg">—</div>
-							<div class="lbl">Promedio</div>
-						</div>
-						<div class="stat-box">
-							<div class="val" id="statVotes">0</div>
-							<div class="lbl">Votos</div>
-						</div>
-						<div class="stat-box">
-							<div class="val" id="statMax">—</div>
-							<div class="lbl">Máximo</div>
-						</div>
+			<!-- Submit -->
+			<button class="btn-submit" id="btnSubmit">
+				📨 Registrar mi voto
+			</button>
+
+			<!-- Results -->
+			<div class="results" id="results">
+				<h3>📊 Resultados</h3>
+				<div class="stats-row" id="statsRow">
+					<div class="stat-box">
+						<div class="val" id="statAvg">—</div>
+						<div class="lbl">Promedio</div>
 					</div>
-					<div class="vote-list" id="voteList">
-						<div class="empty-msg">
-							Aún no hay votos. ¡Sé el primero!
-						</div>
+					<div class="stat-box">
+						<div class="val" id="statVotes">0</div>
+						<div class="lbl">Votos</div>
+					</div>
+					<div class="stat-box">
+						<div class="val" id="statMax">—</div>
+						<div class="lbl">Máximo</div>
+					</div>
+				</div>
+				<div class="vote-list" id="voteList">
+					<div class="empty-msg">
+						Aún no hay votos. ¡Sé el primero!
 					</div>
 				</div>
 			</div>
+		</div>
 		<div class="toast" id="toast"></div>
 
 		<script>
